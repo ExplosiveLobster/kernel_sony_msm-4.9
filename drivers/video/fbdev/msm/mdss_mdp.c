@@ -1987,6 +1987,7 @@ static void mdss_mdp_hw_rev_caps_init(struct mdss_data_type *mdata)
 		mdata->min_prefill_lines = 12;
 		mdata->props = mdss_get_props();
 		break;
+	case MDSS_MDP_HW_REV_111:
 	case MDSS_MDP_HW_REV_112:
 		mdata->max_target_zorder = 4; /* excluding base layer */
 		mdata->max_cursor_size = 64;
@@ -4719,6 +4720,7 @@ static void apply_dynamic_ot_limit(u32 *ot_lim,
 					false);
 		rot_ot  = (read_vbif_ot == 0x10) ? 4 : 8;
 		/* fall-through */
+	case MDSS_MDP_HW_REV_111:
 	case MDSS_MDP_HW_REV_115:
 	case MDSS_MDP_HW_REV_116:
 	case MDSS_MDP_HW_REV_117:
