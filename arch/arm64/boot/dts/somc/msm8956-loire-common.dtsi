@@ -553,12 +553,6 @@
 		};
 	};
 
-	pcm3: qcom,msm-pcm-bit {
-		compatible = "qcom,msm-pcm-dsp";
-		qcom,msm-pcm-dsp-id = <3>;
-		qcom,msm-pcm-bit;
-	};
-
 	usb_otg: usb@78db000 {
 		qcom,usb-switch-sel-gpio = <&pmi8950_gpios 1 0>;
 		qcom,usbin-vadc = <&pmi8950_vadc>;
@@ -655,8 +649,8 @@
 &slim_msm {
 	tasha_codec {
 		qcom,cdc-micbias1-mv = <1800>;
-		qcom,cdc-micbias2-mv = <2450>;
-		qcom,cdc-micbias3-mv = <2450>;
+		qcom,cdc-micbias2-mv = <1800>;
+		qcom,cdc-micbias3-mv = <1800>;
 		qcom,cdc-micbias4-mv = <1800>;
 		qcom,cdc-dmic-sample-rate = <2400000>;
 	};
@@ -673,16 +667,12 @@
 	qcom,audio-routing =
 		"AIF4 VI", "MCLK",
 		"RX_BIAS", "MCLK",
-		"LDO_H", "MCLK",
-		"AMIC1", "LDO_H",
-		"LDO_H", "AHC ISNS",
+		"MADINPUT", "MCLK",
 		"AMIC2", "MIC BIAS2",
 		"MIC BIAS2", "Headset Mic",
 		"MIC BIAS2", "ANCRight Headset Mic",
 		"AMIC3", "MIC BIAS3",
 		"MIC BIAS3", "ANCLeft Headset Mic",
-		"AMIC4", "LDO_H",
-		"LDO_H", "AHC VSNS",
 		"DMIC0", "MIC BIAS1",
 		"MIC BIAS1", "Digital Mic0",
 		"DMIC3", "MIC BIAS4",
@@ -707,16 +697,6 @@
 	pinctrl-1 = <&pri_tlmm_lines_act &sec_tlmm_lines_sus &sec_tlmm_2_lines_sus>;
 	pinctrl-2 = <&pri_tlmm_lines_sus &sec_tlmm_lines_act &sec_tlmm_2_lines_act>;
 	pinctrl-3 = <&pri_tlmm_lines_act &sec_tlmm_lines_act &sec_tlmm_2_lines_act>;
-
-	asoc-platform = <&pcm0>, <&pcm1>, <&pcm2>, <&pcm3>, <&voip>, <&voice>,
-			<&loopback>, <&compress>, <&hostless>,
-			<&afe>, <&lsm>, <&routing>, <&cpe>,
-			<&pcm_noirq>;
-	asoc-platform-names = "msm-pcm-dsp.0", "msm-pcm-dsp.1", "msm-pcm-dsp.2", "msm-pcm-dsp.3",
-			"msm-voip-dsp", "msm-pcm-voice", "msm-pcm-loopback",
-			"msm-compress-dsp", "msm-pcm-hostless", "msm-pcm-afe",
-			"msm-lsm-client", "msm-pcm-routing", "msm-cpe-lsm",
-			"msm-pcm-dsp-noirq";
 };
 
 &pm8950_gpios {
